@@ -1,6 +1,7 @@
 import "./globals.css";
 import { bebasNueue } from "./fonts";
 import { Metadata } from "next";
+import { Providers } from "@/components/client/Providers";
 
 export const metadata: Metadata = {
   title: "Liteflix",
@@ -14,7 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${bebasNueue.variable}`}>{children}</body>
+      <body className={`${bebasNueue.variable}`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

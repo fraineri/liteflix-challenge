@@ -1,6 +1,7 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import AuthLoginButton from "@/components/auth/AuthLoginButton";
+import AuthLoginButton from "@/components/AuthLoginButton";
+import Logo from "@/components/Logo";
 
 const providers = [
   {
@@ -19,10 +20,7 @@ const Auth = () => {
   return (
     <div className="flex items-center justify-center h-screen w-screen bg-black">
       <div>
-        <h1 className="font-bebas-neue text-center font-[400] text-aqua text-3xl tracking-widest">
-          <span className="font-[700]">LITE</span>
-          <span>FLIX</span>
-        </h1>
+        <Logo fontSizePx={30}/>
         <div className="flex items-center justify-center flex-col mt-5">
           {providers.map((provider) => (
             <AuthLoginButton

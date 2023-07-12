@@ -18,10 +18,11 @@ module.exports = {
       },
       colors: {
         aqua: "#64EEBC",
+        "dark-grey": "#242424",
       },
       letterSpacing: {
-        widest: '.25em',
-      }
+        widest: ".25em",
+      },
     },
   },
   plugins: [],
