@@ -10,36 +10,37 @@ import { IconType } from "react-icons/lib";
 import { ReactElement } from "react";
 
 const HomeScreen = () => {
-  const { data: movie } = useQuery({
+  const { data: movies } = useQuery({
     queryKey: ["movie-now-playing_prefetched"],
-    queryFn: movieDbGetNowPlayingTop,
+    queryFn: () => movieDbGetNowPlayingTop(),
   });
 
   return (
     <div className="relative w-full h-screen">
       <Image
-        src={`${THE_MOVIE_IMAGE_BASE_URL}/t/p/original${movie.backdrop_path}`}
+        src={`${THE_MOVIE_IMAGE_BASE_URL}/t/p/original${movies[0].backdrop_path}`}
         fill
-        alt={`Cover image for the movie ${movie.original_title}`}
+        alt={`Cover image for the movie ${movies[0].original_title}`}
         priority={true}
-        className="object-cover z-0 pointer-events-none brightness-75"
+        className="object-cover z-0 pointer-events-none brightness-75 select-none"
       />
       <div className="absolute z-1 top-1/2 w-full">
-        <HomeTitle title={movie.original_title} />
+        <HomeTitle title={movies[0].original_title} />
       </div>
       <div className="absolute bottom-0 w-full h-2/6 z-2 bg-gradient-to-t from-dark-grey via-dark-grey/60 to-transparent flex justify-center items-center">
-        <div className="h-3/6 flex flex-col justify-between items-center">
+        <div className="h-4/6 flex flex-col justify-between items-center">
           <ButtonRectangular
             bgColor="dark-grey"
             text="Reproducir"
-            icon={<FiPlay size={20} className="inline mr-2"/>}
+            icon={<FiPlay size={20} className="inline mr-2" />}
           />
+
           <ButtonRectangular
             bgColor="dark-grey"
             border={true}
             borderColor="white"
             text="Mi Lista"
-            icon={<AiOutlinePlus size={20} className="inline mr-2"/>}
+            icon={<AiOutlinePlus size={20} className="inline mr-2" />}
           />
         </div>
       </div>

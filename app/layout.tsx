@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${bebasNueue.variable}`}>
+      <body className={`${bebasNueue.variable} h-full w-full bg-dark-grey`}>
         <Providers>{children}</Providers>
       </body>
     </html>

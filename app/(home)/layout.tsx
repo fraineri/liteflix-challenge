@@ -7,10 +7,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-red-700">
+    <div className="bg-green-400">
       <Nav />
       {children}
-      <Catalog />
     </div>
   );
 }

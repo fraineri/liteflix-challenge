@@ -17,8 +17,8 @@ module.exports = {
         "bebas-neue": ["var(--font-bebas-mueue)"],
       },
       colors: {
-        aqua: "#64EEBC",
         "dark-grey": "#242424",
+        aqua: "#64EEBC",
       },
       letterSpacing: {
         widest: ".25em",
