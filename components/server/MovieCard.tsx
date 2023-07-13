@@ -3,9 +3,10 @@ import PlayButton from "./PlayButton";
 import { AiFillStar } from "react-icons/ai";
 import Image from "next/image";
 import { THE_MOVIE_IMAGE_BASE_URL } from "@/common/constants";
+import { Movie } from "@/types/movie";
 
 type MovieCardProps = {
-  movie: any;
+  movie: Movie;
 };
 
 const MovieCard = ({ movie }: MovieCardProps) => {
@@ -20,7 +21,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
               <PlayButton size="small" hasHoverEffect={true} />
             </div>
             <p className="font-bebas-neue uppercase tracking-widest text-[17px] text-white  overflow-hidden text-ellipsis whitespace-nowrap">
-              {movie.original_title}
+              {movie.title}
             </p>
           </div>
           {/* SCORE + YEAR */}
@@ -28,11 +29,11 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             <div className="flex flex-row justify-start items-center">
               <AiFillStar className="text-aqua" />
               <span className="ml-2 font-bebas-neue tracking-wide text-[14px] font-[400] text-white">
-                {movie.vote_average}
+                {movie.voteAverage}
               </span>
             </div>
             <span className="font-bebas-neue tracking-wide text-[17px] font-[400] text-white mr-4">
-              {getYearFromDate(movie.release_date)}
+              {getYearFromDate(movie.releaseDate)}
             </span>
           </div>
         </div>
@@ -45,16 +46,16 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             <div className="flex flex-col justify-between items-center h-full pb-3">
               <PlayButton size="medium" />
               <h4 className="font-bebas-neue uppercase tracking-widest text-[16px] text-center text-white px-3">
-                {movie.original_title}
+                {movie.title}
               </h4>
             </div>
           </div>
         </div>
         <div className="absolute w-full h-full top-0 left-0">
           <Image
-            src={`${THE_MOVIE_IMAGE_BASE_URL}/t/p/original${movie.backdrop_path}`}
+            src={`${THE_MOVIE_IMAGE_BASE_URL}/t/p/original${movie.backdropPath}`}
             fill
-            alt={`Cover image for the movie ${movie.original_title}`}
+            alt={`Cover image for the movie ${movie.title}`}
             priority={true}
             className="object-cover pointer-events-none select-none w-full h-full rounded-lg"
           />

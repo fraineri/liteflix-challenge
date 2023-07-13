@@ -4,12 +4,12 @@ import { movieDbGetMoviePopularTop } from "@/services/movie-db.service";
 import { useQuery } from "@tanstack/react-query";
 import { useCallback, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import MovieCard from "./server/MovieCard";
 import useCatalogSelection, {
   CatalogSelectionProvider,
 } from "@/context/catalog-selection.catalog";
 import { CATALOG } from "@/common/enum";
 import { BsCheck } from "react-icons/bs";
+import CatalogList from "./CatalogList";
 
 type CatalogProps = {
   popularShowAmount: number;
@@ -20,6 +20,10 @@ const Catalog: React.FC<CatalogProps> = ({ popularShowAmount }) => {
     queryFn: () => movieDbGetMoviePopularTop(popularShowAmount),
   });
 
+  if (status !== "success" || movies === undefined) {
+    return null;
+  }
+
   return (
     <CatalogSelectionProvider>
       <div className="bg-dark-grey pb-1">
@@ -27,12 +31,7 @@ const Catalog: React.FC<CatalogProps> = ({ popularShowAmount }) => {
         <CatalogSelector />
 
         {/* LIST */}
-        <div className="flex flex-col items-center w-full">
-          {status === "success" &&
-            movies.map((movie: any) => {
-              return <MovieCard key={movie.id} movie={movie} />;
-            })}
-        </div>
+        <CatalogList status={status} movies={movies} />
       </div>
     </CatalogSelectionProvider>
   );
