@@ -1,6 +1,6 @@
 "use client";
 
-import { movieDbGetMoviePopularTop } from "@/services/movie-db.service";
+import { movieDbGetMoviePopularTop } from "@/services/movies.service";
 import { useQuery } from "@tanstack/react-query";
 import { useCallback, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
@@ -9,20 +9,16 @@ import useCatalogSelection, {
 } from "@/context/catalog-selection.catalog";
 import { CATALOG } from "@/common/enum";
 import { BsCheck } from "react-icons/bs";
-import CatalogList from "./CatalogList";
 
 type CatalogProps = {
-  popularShowAmount: number;
+  children: React.ReactNode;
 };
-const Catalog: React.FC<CatalogProps> = ({ popularShowAmount }) => {
-  const { data: movies, status } = useQuery({
-    queryKey: ["movie-popular_prefetched", popularShowAmount],
-    queryFn: () => movieDbGetMoviePopularTop(popularShowAmount),
-  });
+const Catalog: React.FC<CatalogProps> = ({ children }) => {
+  // const { data: movies, status } = useQuery({
+  //   queryKey: ["movie-popular_prefetched", popularShowAmount],
+  //   queryFn: () => movieDbGetMoviePopularTop(popularShowAmount),
+  // });
 
-  if (status !== "success" || movies === undefined) {
-    return null;
-  }
 
   return (
     <CatalogSelectionProvider>
@@ -30,8 +26,8 @@ const Catalog: React.FC<CatalogProps> = ({ popularShowAmount }) => {
         {/* SELECTOR */}
         <CatalogSelector />
 
-        {/* LIST */}
-        <CatalogList status={status} movies={movies} />
+        {/* CTALOG LIST */}
+        {children}
       </div>
     </CatalogSelectionProvider>
   );

@@ -31,10 +31,13 @@ export const movieDbGetMoviePopular = async (): Promise<MoviePopularDTO> => {
   return await res.json();
 };
 
+// BUSINESS METHODS
+
 export const movieDbGetNowPlayingTop = async (
   amount: number = 1
 ): Promise<Movie[]> => {
   const res = await movieDbGetNowPlaying();
+
   const topMovie = res.results
     .sort((a: any, b: any) => b.popularity - a.popularity)
     .slice(0, amount);

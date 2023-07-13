@@ -1,35 +1,28 @@
-"use client";
+"use server";
 
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { THE_MOVIE_IMAGE_BASE_URL } from "@/common/constants";
-import { movieDbGetNowPlayingTop } from "@/services/movie-db.service";
 import { FiPlay } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { ReactElement } from "react";
+import { Movie } from "@/types/movie";
 
-const HomeScreen = () => {
-  const { data: movies, status } = useQuery({
-    queryKey: ["movie-now-playing_prefetched"],
-    queryFn: () => movieDbGetNowPlayingTop(),
-  });
+type HomeScreenProps = {
+  movieScreen: Movie;
+};
 
-  // TODO: Add loading state
-  if (status !== "success" || movies === undefined) {
-    return null;
-  }
-
+const HomeScreen: React.FC<HomeScreenProps> = ({ movieScreen }) => {
   return (
     <div className="relative w-full h-screen">
       <Image
-        src={`${THE_MOVIE_IMAGE_BASE_URL}/t/p/original${movies[0].backdropPath}`}
+        src={`${THE_MOVIE_IMAGE_BASE_URL}/t/p/original${movieScreen.backdropPath}`}
         fill
-        alt={`Cover image for the movie ${movies[0].title}`}
+        alt={`Cover image for the movie ${movieScreen.title}`}
         priority={true}
         className="object-cover z-0 pointer-events-none brightness-75 select-none"
       />
       <div className="absolute z-1 top-1/2 w-full">
-        <HomeTitle title={movies[0].title} />
+        <HomeTitle title={movieScreen.title} />
       </div>
       <div className="absolute bottom-0 w-full h-2/6 z-2 bg-gradient-to-t from-dark-grey via-dark-grey/60 to-transparent flex justify-center items-center">
         <div className="h-4/6 flex flex-col justify-between items-center">
