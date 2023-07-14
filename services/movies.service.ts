@@ -37,7 +37,7 @@ export const GetPersonalMoviesRaw = async (
   userId: string,
   page: number = 1
 ): Promise<MoviePersonalDTO> => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  // await new Promise((resolve) => setTimeout(resolve, 1000));
   const res = await Promise.resolve({
     page: 1,
     results: [

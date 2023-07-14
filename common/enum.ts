@@ -2,3 +2,8 @@ export enum CATALOG {
   POPULAR = "POPULAR",
   PERSONAL = "PERSONAL",
 }
+
+export enum MODAL_SECTION {
+  MAIN_MENU = "MAIN_MENU",
+  ADD_MOVIE = "ADD_MOVIE",
+}

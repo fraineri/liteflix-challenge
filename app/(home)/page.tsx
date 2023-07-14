@@ -1,9 +1,10 @@
 "use server";
 
-import { CATALOG_TOP_AMOUNT } from "@/common/constants";
 import Catalog from "@/components/Catalog";
+import Nav from "@/components/Nav";
 import HomeScreen from "@/components/client/HomeScreen";
 import { ReactQueryHydrate } from "@/components/client/Hydrate";
+import { ModalStackProvider } from "@/context/modal-stack.context";
 import getQueryClient from "@/lib/utils/getQueryClient";
 import { movieDbGetNowPlayingTop } from "@/services/movies.service";
 import { dehydrate } from "@tanstack/react-query";
@@ -17,8 +18,11 @@ const Home = async () => {
 
   return (
     <ReactQueryHydrate state={dehydratedState}>
-      <HomeScreen movieScreen={movieScreen} />
-      <Catalog />
+      <ModalStackProvider>
+        <Nav />
+        <HomeScreen movieScreen={movieScreen} />
+        <Catalog />
+      </ModalStackProvider>
     </ReactQueryHydrate>
   );
 };

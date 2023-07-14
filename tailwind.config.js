@@ -23,6 +23,20 @@ module.exports = {
       letterSpacing: {
         widest: ".25em",
       },
+      keyframes: {
+        "side-in": {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "side-out": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(100%)" },
+        }
+      },
+      animation: {
+        "side-in": "side-in 0.5s ease-in-out forwards",
+        "side-out": "side-out 0.3s ease-in-out forwards",
+      },
     },
   },
   plugins: [],
