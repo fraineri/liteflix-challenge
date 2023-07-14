@@ -71,7 +71,7 @@ export const MenuModal = () => {
     isVisible && (
       <div
         className={`fixed bg-dark-grey w-full h-screen z-50 flex flex-col left-0 ${
-          isMenuOpen ? "animate-side-in" : "animate-side-out"
+          isMenuOpen ? "animate-side-in-from-right" : "animate-side-out-to-right"
         }`}
       >
         {/* Nav */}

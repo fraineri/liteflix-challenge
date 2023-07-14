@@ -24,18 +24,28 @@ module.exports = {
         widest: ".25em",
       },
       keyframes: {
-        "side-in": {
+        "side-in-from-right": {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0)" },
         },
-        "side-out": {
+        "side-out-to-right": {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(100%)" },
-        }
+        },
+        "side-in-from-bottom": {
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0)" },
+        },
+        "side-out-to-bottom": {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(100%)" },
+        },
       },
       animation: {
-        "side-in": "side-in 0.5s ease-in-out forwards",
-        "side-out": "side-out 0.3s ease-in-out forwards",
+        "side-in-from-right": "side-in-from-right 0.3s ease-in-out forwards",
+        "side-out-to-right": "side-out-to-right 0.3s ease-in-out forwards",
+        "side-in-from-bottom": "side-in-from-bottom 0.3s ease-in-out forwards",
+        "side-out-to-bottom": "side-out-to-bottom 0.3s ease-in-out forwards",
       },
     },
   },

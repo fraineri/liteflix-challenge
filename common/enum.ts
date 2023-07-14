@@ -6,4 +6,5 @@ export enum CATALOG {
 export enum MODAL_SECTION {
   MAIN_MENU = "MAIN_MENU",
   ADD_MOVIE = "ADD_MOVIE",
+  SELECT_CATALOG = "SELECT_CATALOG",
 }

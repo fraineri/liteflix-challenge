@@ -14,7 +14,6 @@ const NavMenuButton: React.FC<NavMenuButtonProps> = ({ children }) => {
     const menuModalIsOpen = state.modalStack.includes(MODAL_SECTION.MAIN_MENU);
 
     if (menuModalIsOpen) {
-      console.log("Ready to close menu modal")
       setTimeout(() => {
         dispatch({ type: "CLOSE_MODAL", payload: MODAL_SECTION.MAIN_MENU });
       }, 500);
