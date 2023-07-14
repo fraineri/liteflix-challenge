@@ -3,13 +3,19 @@ import PlayButton from "./PlayButton";
 import { AiFillStar } from "react-icons/ai";
 import Image from "next/image";
 import { THE_MOVIE_IMAGE_BASE_URL } from "@/common/constants";
-import { Movie } from "@/types/movie";
+import { Movie, MovieExternal } from "@/types/movie";
 
 type MovieCardProps = {
-  movie: Movie;
+  movie: Movie | MovieExternal;
 };
 
-const MovieCard = ({ movie }: MovieCardProps) => {
+const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  const isExternalMovie = ((
+    movie: Movie | MovieExternal
+  ): movie is MovieExternal => {
+    return (movie as MovieExternal).popularity !== undefined;
+  })(movie);
+
   return (
     <div className="relative w-80 h-44 group/movie mb-5">
       {/* HOVER */}
@@ -25,13 +31,19 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             </p>
           </div>
           {/* SCORE + YEAR */}
-          <div className="flex flex-row justify-between">
-            <div className="flex flex-row justify-start items-center">
-              <AiFillStar className="text-aqua" />
-              <span className="ml-2 font-bebas-neue tracking-wide text-[14px] font-[400] text-white">
-                {movie.voteAverage}
-              </span>
-            </div>
+          <div
+            className={`flex flex-row ${
+              isExternalMovie ? "justify-between" : "justify-end"
+            }`}
+          >
+            {isExternalMovie && (
+              <div className="flex flex-row justify-start items-center">
+                <AiFillStar className="text-aqua" />
+                <span className="ml-2 font-bebas-neue tracking-wide text-[14px] font-[400] text-white">
+                  {movie.voteAverage}
+                </span>
+              </div>
+            )}
             <span className="font-bebas-neue tracking-wide text-[17px] font-[400] text-white mr-4">
               {getYearFromDate(movie.releaseDate)}
             </span>

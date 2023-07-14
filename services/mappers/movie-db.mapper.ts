@@ -1,10 +1,11 @@
-import { Movie } from "@/types/movie";
+import { Movie, MovieExternal } from "@/types/movie";
 import { MoviePlayingResultDTO } from "../dto/movie-playing.dto";
 import { MoviePopularResultDTO } from "../dto/movie-popular.dto";
+import { MoviePersonalResultDTO } from "../dto/movie-personal.dto";
 
 export const MapMoviePlayingResultDTOtoMovie = (
   moviePlayingResultDTO: MoviePlayingResultDTO
-): Movie => {
+): MovieExternal => {
   return {
     id: moviePlayingResultDTO.id,
     title: moviePlayingResultDTO.title,
@@ -17,7 +18,7 @@ export const MapMoviePlayingResultDTOtoMovie = (
 
 export const MapMoviePopularResultDTOtoMovie = (
   moviePopularResultDTO: MoviePopularResultDTO
-): Movie => {
+): MovieExternal => {
   return {
     id: moviePopularResultDTO.id,
     title: moviePopularResultDTO.title,
@@ -25,5 +26,16 @@ export const MapMoviePopularResultDTOtoMovie = (
     popularity: moviePopularResultDTO.popularity,
     voteAverage: moviePopularResultDTO.vote_average,
     backdropPath: moviePopularResultDTO.backdrop_path,
+  };
+};
+
+export const MapMoviePersonalResultDTOtoMovie = (
+  moviePersonalResultDTO: MoviePersonalResultDTO
+): Movie => {
+  return {
+    id: moviePersonalResultDTO.id,
+    title: moviePersonalResultDTO.title,
+    releaseDate: moviePersonalResultDTO.upload_year,
+    backdropPath: moviePersonalResultDTO.image_url,
   };
 };

@@ -2,7 +2,10 @@ export type Movie = {
   id: number;
   title: string;
   releaseDate: string;
-  popularity: number;
-  voteAverage: number;
   backdropPath: string;
 };
+
+export type MovieExternal = {
+  popularity: number;
+  voteAverage: number;
+} & Movie;
