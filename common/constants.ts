@@ -4,3 +4,5 @@ export const THE_MOVIE_TOKEN =
   process.env.THE_MOVIE_TOKEN || process.env.NEXT_PUBLIC_THE_MOVIE_TOKEN || "";
 
 export const CATALOG_TOP_AMOUNT = 4;
+
+export const AUTH_BASE_URL = process.env.AUTH_API_BASE_URL || "";

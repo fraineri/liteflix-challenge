@@ -4,9 +4,11 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { prismadb } from "./prismadb";
 import { nanoid } from "nanoid";
+import { BackendAdapter } from "./auth/backend-adapter";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prismadb),
+  // adapter: PrismaAdapter(prismadb),
+  adapter: BackendAdapter(),
   session: {
     strategy: "jwt",
   },
