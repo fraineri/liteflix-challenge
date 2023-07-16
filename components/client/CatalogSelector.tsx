@@ -4,7 +4,7 @@ import { CATALOG, MODAL_SECTION } from "@/common/enum";
 import useCatalogSelection from "@/context/catalog-selection.catalog";
 import { CatalogOption } from "@/types/catalog-selection";
 import { IoIosArrowDown } from "react-icons/io";
-import { CatalogSelectorModal } from "./CatalogSelectorModal";
+import { CatalogSelectorModal } from "./modals/CatalogSelectorModal";
 import { useModalStack } from "@/context/modal-stack.context";
 
 export const CatalogSelector = () => {

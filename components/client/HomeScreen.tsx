@@ -6,6 +6,8 @@ import { FiPlay } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { ReactElement } from "react";
 import { Movie } from "@/types/movie";
+import { ButtonRectangular } from "./ui/ButtonRectangular";
+import { COLORS } from "@/common/enum";
 
 type HomeScreenProps = {
   movieScreen: Movie;
@@ -27,16 +29,18 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ movieScreen }) => {
       <div className="absolute bottom-0 w-full h-2/6 z-2 bg-gradient-to-t from-dark-grey via-dark-grey/60 to-transparent flex justify-center items-center">
         <div className="h-4/6 flex flex-col justify-between items-center">
           <ButtonRectangular
-            bgColor="dark-grey"
+            bgColor={COLORS.DARK_GREY}
             text="Reproducir"
+            textColor={COLORS.WHITE}
             icon={<FiPlay size={20} className="inline mr-2" />}
           />
 
           <ButtonRectangular
-            bgColor="dark-grey"
+            bgColor={COLORS.DARK_GREY}
             border={true}
-            borderColor="white"
+            borderColor={COLORS.WHITE}
             text="Mi Lista"
+            textColor={COLORS.WHITE}
             icon={<AiOutlinePlus size={20} className="inline mr-2" />}
           />
         </div>
@@ -59,35 +63,6 @@ const HomeTitle: React.FC<HomeTitleProps> = ({ title }) => {
         {title}
       </h2>
     </div>
-  );
-};
-
-type ButtonRectangularProps = {
-  bgColor: "dark-grey" | "light-grey" | "white";
-  border?: boolean | false;
-  borderColor?: "dark-grey" | "light-grey" | "white" | undefined;
-  text: string;
-  icon?: ReactElement | null;
-};
-
-const ButtonRectangular: React.FC<ButtonRectangularProps> = ({
-  bgColor,
-  border,
-  borderColor,
-  text,
-  icon,
-}) => {
-  return (
-    <button
-      className={`flex flex-row justify-center items-center bg-${bgColor} w-[248px] h-[56px] text-white ${
-        border ? `border border-${borderColor} border-spacing-1` : ""
-      }`}
-    >
-      {icon !== null && icon}
-      <span className="font-bebas-neue uppercase tracking-wide text-[18px]">
-        {text}
-      </span>
-    </button>
   );
 };
 

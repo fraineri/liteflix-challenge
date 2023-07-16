@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Logo from "../Logo";
-import NavMenuButton from "./NavMenuButton";
+import Logo from "../../server/Logo";
+import ModalOpenButton from "../NavMenuButton";
 import { TfiClose, TfiPlus } from "react-icons/tfi";
 import { useModalStack } from "@/context/modal-stack.context";
 import { useEffect, useState } from "react";
@@ -71,15 +71,17 @@ export const MenuModal = () => {
     isVisible && (
       <div
         className={`fixed bg-dark-grey w-full h-screen z-50 flex flex-col left-0 ${
-          isMenuOpen ? "animate-side-in-from-right" : "animate-side-out-to-right"
+          isMenuOpen
+            ? "animate-side-in-from-right"
+            : "animate-side-out-to-right"
         }`}
       >
         {/* Nav */}
         <div className="flex flex-row justify-between items-center px-7 h-[42px]">
           <div onClick={() => setIsMenuOpen(false)}>
-            <NavMenuButton>
+            <ModalOpenButton modalSection={MODAL_SECTION.MAIN_MENU}>
               <TfiClose size={20} className="text-white" />
-            </NavMenuButton>
+            </ModalOpenButton>
           </div>
           <Logo />
           {sessionData?.user && (
@@ -104,12 +106,16 @@ export const MenuModal = () => {
               </div>
             ))}
           </div>
-          <div className="flex flex-row items-center mt-12  cursor-pointer">
-            <TfiPlus className="text-white" />
-            <span className="ml-2 font-bebas-neue text-[16px] font-[700] tracking-widest uppercase text-white">
-              Agregar pelicula
-            </span>
-          </div>
+
+          <ModalOpenButton modalSection={MODAL_SECTION.ADD_MOVIE}>
+            <div className="flex flex-row items-center mt-12  cursor-pointer">
+              <TfiPlus className="text-white" />
+              <span className="ml-2 font-bebas-neue text-[16px] font-[700] tracking-widest uppercase text-white">
+                Agregar pelicula
+              </span>
+            </div>
+          </ModalOpenButton>
+
           <div className="mt-12 pb-[42px] cursor-pointer">
             <span className="font-bebas-neue text-[16px] font-[400] text-white tracking-widest uppercase hover:font-[700]">
               Cerrar sesion

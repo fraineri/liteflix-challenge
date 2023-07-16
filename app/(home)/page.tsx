@@ -1,7 +1,7 @@
 "use server";
 
-import Catalog from "@/components/Catalog";
-import Nav from "@/components/Nav";
+import Catalog from "@/components/server/Catalog";
+import Nav from "@/components/server/Nav";
 import HomeScreen from "@/components/client/HomeScreen";
 import { ReactQueryHydrate } from "@/components/client/Hydrate";
 import { ModalStackProvider } from "@/context/modal-stack.context";

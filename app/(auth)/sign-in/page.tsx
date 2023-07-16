@@ -1,7 +1,7 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import AuthLoginButton from "@/components/AuthLoginButton";
-import Logo from "@/components/Logo";
+import AuthLoginButton from "@/components/client/AuthLoginButton";
+import Logo from "@/components/server/Logo";
 
 const providers = [
   {

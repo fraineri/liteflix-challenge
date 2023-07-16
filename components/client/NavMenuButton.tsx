@@ -3,22 +3,26 @@
 import { MODAL_SECTION } from "@/common/enum";
 import { useModalStack } from "@/context/modal-stack.context";
 
-type NavMenuButtonProps = {
+type ModalOpenButtonProps = {
   children: React.ReactNode;
+  modalSection: MODAL_SECTION;
 };
-
-const NavMenuButton: React.FC<NavMenuButtonProps> = ({ children }) => {
+const ModalOpenButton: React.FC<ModalOpenButtonProps> = ({
+  children,
+  modalSection,
+}) => {
   const { state, dispatch } = useModalStack();
 
   const handleClick = () => {
-    const menuModalIsOpen = state.modalStack.includes(MODAL_SECTION.MAIN_MENU);
+    console.log("handleClick", state, modalSection);
+    const menuModalIsOpen = state.modalStack.includes(modalSection);
 
     if (menuModalIsOpen) {
       setTimeout(() => {
-        dispatch({ type: "CLOSE_MODAL", payload: MODAL_SECTION.MAIN_MENU });
+        dispatch({ type: "CLOSE_MODAL", payload: modalSection });
       }, 500);
     } else {
-      dispatch({ type: "PUSH_MODAL", payload: MODAL_SECTION.MAIN_MENU });
+      dispatch({ type: "PUSH_MODAL", payload: modalSection });
     }
   };
 
@@ -29,4 +33,4 @@ const NavMenuButton: React.FC<NavMenuButtonProps> = ({ children }) => {
   );
 };
 
-export default NavMenuButton;
+export default ModalOpenButton;

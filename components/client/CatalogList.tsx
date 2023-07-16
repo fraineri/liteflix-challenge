@@ -1,7 +1,7 @@
 "use client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Movie, MovieExternal } from "@/types/movie";
-import MovieCard from "./server/MovieCard";
+import MovieCard from "../server/MovieCard";
 import useCatalogSelection from "@/context/catalog-selection.catalog";
 import { GetPersonalMovies } from "@/services/movies.service";
 import { useEffect, useRef } from "react";

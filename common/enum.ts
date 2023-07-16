@@ -8,3 +8,11 @@ export enum MODAL_SECTION {
   ADD_MOVIE = "ADD_MOVIE",
   SELECT_CATALOG = "SELECT_CATALOG",
 }
+
+export enum COLORS {
+  DARK_GREY = 'dark-grey',
+  LIGHT_GREY = 'light-grey',
+  WHITE = 'white',
+  BLACK = 'black',
+  TRANSPARENT = 'transparent',
+}

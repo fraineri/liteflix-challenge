@@ -3,13 +3,13 @@
 import useCatalogSelection, {
   CatalogSelectionProvider,
 } from "@/context/catalog-selection.catalog";
-import { CatalogSelector } from "./client/CatalogSelector";
+import { CatalogSelector } from "../client/CatalogSelector";
 import {
   GetPersonalMovies,
   movieDbGetMoviePopularTop,
 } from "@/services/movies.service";
 import { CATALOG_TOP_AMOUNT } from "@/common/constants";
-import CatalogList from "./CatalogList";
+import CatalogList from "../client/CatalogList";
 import { getAuthSession } from "@/lib/authOptions";
 import { Session } from "next-auth";
 import { redirect } from "next/navigation";

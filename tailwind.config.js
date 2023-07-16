@@ -17,6 +17,7 @@ module.exports = {
         "bebas-neue": ["var(--font-bebas-mueue)"],
       },
       colors: {
+        "light-grey": "#919191",
         "dark-grey": "#242424",
         aqua: "#64EEBC",
       },
@@ -24,6 +25,14 @@ module.exports = {
         widest: ".25em",
       },
       keyframes: {
+        "side-in-from-left": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "side-out-to-left": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
         "side-in-from-right": {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0)" },
@@ -42,6 +51,8 @@ module.exports = {
         },
       },
       animation: {
+        "side-in-from-left": "side-in-from-left 0.3s ease-in-out forwards",
+        "side-out-to-left": "side-out-to-left 0.3s ease-in-out forwards",
         "side-in-from-right": "side-in-from-right 0.3s ease-in-out forwards",
         "side-out-to-right": "side-out-to-right 0.3s ease-in-out forwards",
         "side-in-from-bottom": "side-in-from-bottom 0.3s ease-in-out forwards",
