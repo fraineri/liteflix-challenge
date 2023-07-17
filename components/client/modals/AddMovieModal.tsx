@@ -41,7 +41,7 @@ const AddMovieModal = () => {
   };
 
   const handleSaveMovie = async () => {
-    const res = await fetch("/api/media/save", {
+    await fetch("/api/media/save", {
       method: "POST",
       body: JSON.stringify({
         title: movieTitle,
@@ -50,10 +50,17 @@ const AddMovieModal = () => {
       }),
     });
 
-    const data = await res.json();
+    setSucceedState(true);
   };
 
-  const handleExitModal = () => {};
+  const handleExitModal = async () => {
+    setIsModalOpen(false);
+    setFileKey(undefined);
+    setMovieTitle(undefined);
+    await setTimeout(() => {
+      setSucceedState(false);
+    }, 500);
+  };
 
   return (
     isVisible && (
@@ -90,7 +97,7 @@ const AddMovieModal = () => {
           </div>
         </div>
 
-        {succeedState ? (
+        {!succeedState ? (
           <form className="flex flex-col justify-around items-center h-full min-h-[350px] max-h-[700px] px-7  overflow-y-auto">
             <h2 className="font-bebas-neue text-aqua text-[22px] font-[700] tracking-widest uppercase">
               Agregar Pelicula
@@ -148,7 +155,7 @@ const AddMovieModal = () => {
             </div>
 
             <ModalOpenButton modalSection={MODAL_SECTION.ADD_MOVIE}>
-              <div onClick={() => setIsModalOpen(false)}>
+              <div onClick={() => handleExitModal()}>
                 <ButtonRectangular
                   bgColor={COLORS.DARK_GREY}
                   border={true}
