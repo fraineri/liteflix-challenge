@@ -62,8 +62,6 @@ const CatalogList: React.FC<CatalogListProps> = ({ initialData }) => {
   }
   moviesFetched!.pages.flat();
 
-  console.log("INITIAL", initialData);
-
   return (
     <div className="flex flex-col justify-start items-center w-full lg:max-h-[650px] lg:h-md:max-h-[460px] overflow-y-scroll">
       {movieCards &&

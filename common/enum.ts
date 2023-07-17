@@ -23,3 +23,10 @@ export enum DIRECTION {
   LEFT = "left",
   RIGHT = "right",
 }
+
+export enum UPLOAD_STATUS {
+  IDLE = "IDLE",
+  UPLOADING = "UPLOADING",
+  SUCCESS = "SUCCESS",
+  ERROR = "ERROR",
+}

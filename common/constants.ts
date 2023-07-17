@@ -3,4 +3,6 @@ export const THE_MOVIE_IMAGE_BASE_URL = "https://image.tmdb.org";
 export const THE_MOVIE_TOKEN =
   process.env.THE_MOVIE_TOKEN || process.env.NEXT_PUBLIC_THE_MOVIE_TOKEN || "";
 
+export const BACKEND_BASE_URL = 'http://localhost:3001' || "";
+
 export const CATALOG_TOP_AMOUNT = 4;

@@ -21,7 +21,6 @@ export const CatalogSelectorModal: React.FC<CatalogSelectorModalProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    console.log("MODAL STACK", state.modalStack)
     const isModalOpen = state.modalStack.includes(MODAL_SECTION.SELECT_CATALOG);
     setIsVisible(isModalOpen);
     setIsMenuOpen(isModalOpen);
@@ -42,7 +41,6 @@ export const CatalogSelectorModal: React.FC<CatalogSelectorModalProps> = ({
     }, 500);
   }, []);
 
-  console.log("IS MENU OPEN", isMenuOpen);
   return (
     isVisible && (
       <div>

@@ -1,3 +1,4 @@
+"use client";
 import { COLORS } from "@/common/enum";
 import { ReactElement } from "react";
 
@@ -9,6 +10,8 @@ type ButtonRectangularProps = {
   textColor: COLORS;
   textWeight?: "400" | "700";
   icon?: ReactElement | null;
+  disabled?: boolean;
+  onClick?: () => void;
 };
 
 export const ButtonRectangular: React.FC<ButtonRectangularProps> = ({
@@ -19,12 +22,19 @@ export const ButtonRectangular: React.FC<ButtonRectangularProps> = ({
   textColor,
   textWeight = "400",
   icon,
+  disabled: blocked = false,
+  onClick = () => {},
 }) => {
   return (
     <button
       className={`flex flex-row justify-center items-center bg-${bgColor} w-[248px] h-[56px] text-${textColor} ${
         border ? `border border-${borderColor} border-spacing-1` : ""
       }`}
+      disabled={blocked}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick();
+      }}
     >
       {icon !== null && icon}
       <span
