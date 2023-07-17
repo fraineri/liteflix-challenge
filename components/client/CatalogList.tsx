@@ -73,7 +73,6 @@ const CatalogList: React.FC<CatalogListProps> = ({ initialData }) => {
       )!.movies;
       break;
   }
-  console.log("movieCards", movieCards);
   // moviesFetched!.pages.flat();
 
   return (
