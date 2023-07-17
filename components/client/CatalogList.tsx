@@ -62,21 +62,29 @@ const CatalogList: React.FC<CatalogListProps> = ({ initialData }) => {
   }
   moviesFetched!.pages.flat();
 
+  console.log("INITIAL", initialData);
+
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col justify-start items-center w-full lg:max-h-[650px] lg:h-md:max-h-[460px] overflow-y-scroll">
       {movieCards &&
         (catalogSelected === CATALOG.PERSONAL
           ? movieCards.map((movie, index) =>
               index !== movieCards.length - 1 ? (
-                <MovieCard key={movie.id} movie={movie} />
+                <div key={movie.id} className="flex-shrink-0">
+                  <MovieCard movie={movie} />
+                </div>
               ) : (
-                <div key={movie.id} ref={ref}>
+                <div key={movie.id} ref={ref} className="flex-shrink-0">
                   <MovieCard movie={movie} />
                 </div>
               )
             )
           : movieCards.map((movie: Movie) => {
-              return <MovieCard key={movie.id} movie={movie} />;
+              return (
+                <div key={movie.id} ref={ref} className="flex-shrink-0">
+                  <MovieCard key={movie.id} movie={movie} />
+                </div>
+              );
             }))}
 
       {isFetchingNextPage && hasNextPage && (

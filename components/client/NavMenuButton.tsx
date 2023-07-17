@@ -14,15 +14,14 @@ const ModalOpenButton: React.FC<ModalOpenButtonProps> = ({
   const { state, dispatch } = useModalStack();
 
   const handleClick = () => {
-    console.log("handleClick", state, modalSection);
     const menuModalIsOpen = state.modalStack.includes(modalSection);
 
     if (menuModalIsOpen) {
       setTimeout(() => {
-        dispatch({ type: "CLOSE_MODAL", payload: modalSection });
+        dispatch({ type: "CLOSE_MODAL", payload: { section: modalSection } });
       }, 500);
     } else {
-      dispatch({ type: "PUSH_MODAL", payload: modalSection });
+      dispatch({ type: "PUSH_MODAL", payload: { section: modalSection } });
     }
   };
 

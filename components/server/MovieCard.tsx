@@ -17,7 +17,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   })(movie);
 
   return (
-    <div className="relative w-80 h-44 group/movie mb-5">
+    <div className="relative w-80 lg:w-[220px] h-44 lg:h-[145px] group/movie mb-5">
       {/* HOVER */}
       <div className="absolute -invisible group-hover/movie:visible top-0 left-1/2 transfrom -translate-x-1/2 z-10 w-full h-full bg-dark-grey bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100">
         <div className="relative flex flex-col justify-around top-1/2 h-1/2 w-full pl-4 ">
@@ -52,7 +52,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
       </div>
 
       {/* PREVIEW */}
-      <div className="relative w-full h-full mx-auto mb-5">
+      <div className="w-full h-full mx-auto mb-5">
         <div className="relative z-[1] w-full h-full bg-gradient-to-t from-dark-grey/90 via-dark-grey/30 to-transparent text-white flex flex-col justify-center items-center group-hover/movie:opacity-0 transition-opacity duration-300">
           <div className="absolute text-center h-2/3 top-1/3">
             <div className="flex flex-col justify-between items-center h-full pb-3">

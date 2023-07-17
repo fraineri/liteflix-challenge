@@ -44,12 +44,12 @@ const Catalog: React.FC<CatalogProps> = async () => {
   ];
 
   return (
+    <div>
     <CatalogSelectionProvider>
-      <div className="bg-dark-grey pb-1">
         <CatalogSelector />
         <CatalogList initialData={initialCatalogData} />
-      </div>
     </CatalogSelectionProvider>
+    </div>
   );
 };
 

@@ -13,13 +13,14 @@ import { Session } from "next-auth";
 export const MenuModal = () => {
   const { state, dispatch } = useModalStack();
   const [isVisible, setIsVisible] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [sessionData, setSessionData] = useState<Session | null>();
 
   useEffect(() => {
     const isModalOpen = state.modalStack.includes(MODAL_SECTION.MAIN_MENU);
+
     setIsVisible(isModalOpen);
-    setIsMenuOpen(isModalOpen);
+    setIsModalOpen(isModalOpen);
   }, [state]);
 
   const menuList = [
@@ -70,15 +71,15 @@ export const MenuModal = () => {
   return (
     isVisible && (
       <div
-        className={`fixed bg-dark-grey w-full h-screen z-50 flex flex-col left-0 ${
-          isMenuOpen
+        className={`fixed bg-dark-grey w-full lg:w-1/2 h-screen z-50 flex flex-col left-0 lg:left-1/2 ${
+          isModalOpen
             ? "animate-side-in-from-right"
             : "animate-side-out-to-right"
         }`}
       >
         {/* Nav */}
         <div className="flex flex-row justify-between items-center px-7 h-[42px]">
-          <div onClick={() => setIsMenuOpen(false)}>
+          <div onClick={() => setIsModalOpen(false)}>
             <ModalOpenButton modalSection={MODAL_SECTION.MAIN_MENU}>
               <TfiClose size={20} className="text-white" />
             </ModalOpenButton>

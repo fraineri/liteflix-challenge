@@ -19,17 +19,25 @@ export const CatalogSelector = () => {
     },
   ];
 
-  const { dispatch } = useModalStack();
+  const { state, dispatch } = useModalStack();
   const { catalogSelected } = useCatalogSelection();
 
   const handleModalOpen = () => {
-    dispatch({ type: "PUSH_MODAL", payload: MODAL_SECTION.SELECT_CATALOG });
+    const selectorAlreadyOpen = state.modalStack.includes(
+      MODAL_SECTION.SELECT_CATALOG
+    );
+    if (!selectorAlreadyOpen) {
+      dispatch({
+        type: "PUSH_MODAL",
+        payload: { section: MODAL_SECTION.SELECT_CATALOG },
+      });
+    }
   };
 
   return (
     <div>
       <div
-        className="font-bebas-neue uppercase tracking-widest text-[18px] text-center text-white mb-5 cursor-pointer"
+        className="relative font-bebas-neue uppercase tracking-widest text-[18px] text-center text-white mb-5 cursor-pointer"
         onClick={() => handleModalOpen()}
       >
         <span>VER:</span>{" "}
@@ -40,8 +48,8 @@ export const CatalogSelector = () => {
           }
         </span>
         <IoIosArrowDown size={20} className="inline" />
+        <CatalogSelectorModal options={catalogOptionsList} />
       </div>
-      <CatalogSelectorModal options={catalogOptionsList} />
     </div>
   );
 };

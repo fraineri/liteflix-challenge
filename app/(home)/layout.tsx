@@ -5,5 +5,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="bg-dark-grey">{children}</div>;
+  return <div>{children}</div>;
 }

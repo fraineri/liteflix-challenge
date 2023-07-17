@@ -24,7 +24,7 @@ const modalStackReducer = (
   switch (action.type) {
     case "PUSH_MODAL":
       return {
-        modalStack: [...state.modalStack, action.payload!],
+        modalStack: [...state.modalStack, action.payload?.section!],
       };
     case "POP_MODAL":
       return {
@@ -33,7 +33,7 @@ const modalStackReducer = (
     case "CLOSE_MODAL":
       return {
         modalStack: state.modalStack.filter(
-          (modal) => modal !== action.payload
+          (modal) => modal !== action.payload?.section
         ),
       };
     case "CLEAR_ALL":

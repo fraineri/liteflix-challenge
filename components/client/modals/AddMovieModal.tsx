@@ -35,27 +35,36 @@ const AddMovieModal = () => {
   return (
     isVisible && (
       <div
-        className={`fixed bg-dark-grey w-full h-screen z-50 flex flex-col right-0 ${
-          isModalOpen ? "animate-side-in-from-left" : "animate-side-out-to-left"
+        className={`fixed bg-dark-grey w-full lg:w-[730px] h-screen lg:h-[440px] z-50 flex flex-col lg:left-[calc(50%-365px)] lg:bottom-0 ${
+          isModalOpen
+            ? "animate-side-in-from-left lg:animate-side-in-from-bottom-to-middle"
+            : "animate-side-out-to-left lg:animate-side-out-to-bottom-from-middle"
         }`}
       >
         {/* Nav */}
-        <div className="flex flex-row justify-between items-center px-7 h-[42px]">
+        <div className="flex flex-row justify-between  lg:justify-end items-center px-7 h-[42px] mt-6">
           <ModalOpenButton modalSection={MODAL_SECTION.ADD_MOVIE}>
             <div onClick={() => setIsModalOpen(false)}>
-              <MenuIcon />
+              <div className="visible lg:invisible">
+                <MenuIcon />
+              </div>
+              <TfiClose size={20} className="invisible lg:visible text-white" />
             </div>
           </ModalOpenButton>
-          <Logo />
-          {sessionData?.user && (
-            <Image
-              src={`${sessionData?.user?.image}`}
-              width={40}
-              height={40}
-              alt="Profile picture"
-              className="rounded-full"
-            />
-          )}
+          <div className="lg:hidden ">
+            <Logo />
+          </div>
+          <div className="lg:hidden">
+            {sessionData?.user && (
+              <Image
+                src={`${sessionData?.user?.image}`}
+                width={40}
+                height={40}
+                alt="Profile picture"
+                className="rounded-full"
+              />
+            )}
+          </div>
         </div>
 
         {/* FORM */}
@@ -84,7 +93,7 @@ const AddMovieModal = () => {
           </div>
 
           {/* BUTTONS */}
-          <div className="flex flex-col justify-between h-36">
+          <div className="flex flex-col justify-between lg:justify-center h-36">
             <ButtonRectangular
               bgColor={COLORS.LIGHT_GREY}
               border={true}
@@ -93,14 +102,16 @@ const AddMovieModal = () => {
               textColor={COLORS.BLACK}
               textWeight="700"
             />
-            <ButtonRectangular
-              bgColor={COLORS.DARK_GREY}
-              border={true}
-              borderColor={COLORS.LIGHT_GREY}
-              text="Salir"
-              textColor={COLORS.WHITE}
-              textWeight="400"
-            />
+            <div className="lg:hidden">
+              <ButtonRectangular
+                bgColor={COLORS.DARK_GREY}
+                border={true}
+                borderColor={COLORS.LIGHT_GREY}
+                text="Salir"
+                textColor={COLORS.WHITE}
+                textWeight="400"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -20,7 +20,6 @@ export const ButtonRectangular: React.FC<ButtonRectangularProps> = ({
   textWeight = "400",
   icon,
 }) => {
-  console.log("bgColor", bgColor);
   return (
     <button
       className={`flex flex-row justify-center items-center bg-${bgColor} w-[248px] h-[56px] text-${textColor} ${

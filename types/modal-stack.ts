@@ -6,7 +6,7 @@ export type ModalStackState = {
 
 export type ModalStackAction = {
   type: "PUSH_MODAL" | "POP_MODAL" | "CLOSE_MODAL" | "CLEAR_ALL";
-  payload?: MODAL_SECTION;
+  payload?: { section: MODAL_SECTION };
 };
 
 export type ModalStackDispatch = (action: ModalStackAction) => void;

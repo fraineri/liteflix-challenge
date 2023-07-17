@@ -6,6 +6,7 @@ import { useModalStack } from "@/context/modal-stack.context";
 import { CatalogOption } from "@/types/catalog-selection";
 import { useCallback, useEffect, useState } from "react";
 import { BsCheck } from "react-icons/bs";
+import { GoTriangleUp } from "react-icons/go";
 
 type CatalogSelectorModalProps = {
   options: CatalogOption[];
@@ -20,6 +21,7 @@ export const CatalogSelectorModal: React.FC<CatalogSelectorModalProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
+    console.log("MODAL STACK", state.modalStack)
     const isModalOpen = state.modalStack.includes(MODAL_SECTION.SELECT_CATALOG);
     setIsVisible(isModalOpen);
     setIsMenuOpen(isModalOpen);
@@ -33,26 +35,28 @@ export const CatalogSelectorModal: React.FC<CatalogSelectorModalProps> = ({
   const handleCloseModal = useCallback(() => {
     setIsMenuOpen(false);
     setTimeout(() => {
-      dispatch({ type: "CLOSE_MODAL", payload: MODAL_SECTION.SELECT_CATALOG });
-    }, 200);
+      dispatch({
+        type: "CLOSE_MODAL",
+        payload: { section: MODAL_SECTION.SELECT_CATALOG },
+      });
+    }, 500);
   }, []);
 
+  console.log("IS MENU OPEN", isMenuOpen);
   return (
     isVisible && (
       <div>
-        {/* OUTSIDE OF THE BOX */}
-        <div
-          className="fixed bottom-0 left-0 w-full h-full z-50"
-          onClick={handleCloseModal}
-        ></div>
         {/* MODAL CONTENT */}
         <div
-          className={`fixed bottom-0 left-0 w-full h-28 bg-dark-grey z-50 flex flex-col justify-around py-5 ${
+          className={`fixed bottom-0 left-0 w-full h-28 bg-dark-grey z-40 flex flex-col justify-around py-5  ${
             isMenuOpen
-              ? "animate-side-in-from-bottom"
-              : "animate-side-out-to-bottom"
-          }`}
+              ? "animate-side-in-from-bottom lg:animate-fade-in"
+              : "animate-side-out-to-bottom lg:animate-fade-out"
+          }  lg:absolute lg:top-[35px] lg:left-auto lg:right-0 lg:w-[241px]`}
         >
+          <div className="invisible absolute lg:visible -top-5 right-5">
+            <GoTriangleUp size={40} className="text-dark-grey" />
+          </div>
           {options.map((option) => {
             return (
               <div

@@ -10,9 +10,16 @@ export enum MODAL_SECTION {
 }
 
 export enum COLORS {
-  DARK_GREY = 'dark-grey',
-  LIGHT_GREY = 'light-grey',
-  WHITE = 'white',
-  BLACK = 'black',
-  TRANSPARENT = 'transparent',
+  DARK_GREY = "dark-grey",
+  LIGHT_GREY = "light-grey",
+  WHITE = "white",
+  BLACK = "black",
+  TRANSPARENT = "transparent",
+}
+
+export enum DIRECTION {
+  TOP = "top",
+  BOTTOM = "bottom",
+  LEFT = "left",
+  RIGHT = "right",
 }
