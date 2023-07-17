@@ -25,7 +25,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ token, session }) {
-      // console.log(">>> session", session, token);
       if (token) {
         session.user.id = token.id;
         session.user.name = token.name;
@@ -36,7 +35,6 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async jwt({ token, user }) {
-      // console.log(">>> JWT", token, user);
       const dbuser = await prismadb.user.findFirst({
         where: {
           email: token.email,

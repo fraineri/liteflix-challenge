@@ -4,10 +4,12 @@ import { Movie, MovieExternal } from "@/types/movie";
 import MovieCard from "../server/MovieCard";
 import useCatalogSelection from "@/context/catalog-selection.catalog";
 import { GetPersonalMovies } from "@/services/movies.service";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useIntersection } from "@mantine/hooks";
 import { AiOutlineReload } from "react-icons/ai";
 import { CATALOG } from "@/common/enum";
+import { Session } from "next-auth";
+import { getSession } from "next-auth/react";
 
 type CatalogListProps = {
   initialData: {
@@ -23,36 +25,47 @@ const CatalogList: React.FC<CatalogListProps> = ({ initialData }) => {
     root: lastMovieCardRef.current,
     threshold: 1,
   });
+  // const [sessionData, setSessionData] = useState<Session | null>();
 
-  const {
-    data: moviesFetched,
-    fetchNextPage,
-    isFetchingNextPage,
-    hasNextPage,
-  } = useInfiniteQuery({
-    queryKey: ["personal-movies"],
-    queryFn: async ({ pageParam = 1 }) => {
-      return await GetPersonalMovies("1", pageParam);
-    },
-    getNextPageParam: (lastPage, pages) => {
-      return lastPage?.length === 0 ? undefined : pages.length + 1;
-    },
-    initialData: {
-      pages: [
-        initialData.find((data) => data.catalog === CATALOG.PERSONAL)!.movies,
-      ],
-      pageParams: [1],
-    },
-  });
+  // useEffect(() => {
+  //   (async () => {
+  //     const session = await getSession();
+  //     setSessionData(session);
+  //   })();
+  // }, []);
 
-  useEffect(() => {
-    if (entry?.isIntersecting) fetchNextPage();
-  }, [entry]);
+  // const {
+  //   data: moviesFetched,
+  //   fetchNextPage,
+  //   isFetchingNextPage,
+  //   hasNextPage,
+  // } = useInfiniteQuery({
+  //   queryKey: ["personal-movies"],
+  //   queryFn: async ({ pageParam = 1 }) => {
+  //     return await GetPersonalMovies(sessionData?.user.username!, pageParam);
+  //   },
+  //   getNextPageParam: (lastPage, pages) => {
+  //     return lastPage?.length === 0 ? undefined : pages.length + 1;
+  //   },
+  //   initialData: {
+  //     pages: [
+  //       initialData.find((data) => data.catalog === CATALOG.PERSONAL)!.movies,
+  //     ],
+  //     pageParams: [1],
+  //   },
+  // });
+
+  // useEffect(() => {
+  //   if (entry?.isIntersecting) fetchNextPage();
+  // }, [entry]);
 
   let movieCards;
   switch (catalogSelected) {
     case CATALOG.PERSONAL:
-      movieCards = moviesFetched?.pages.flat();
+      // movieCards = moviesFetched?.pages.flat();
+      movieCards = initialData.find(
+        (data) => data.catalog === CATALOG.PERSONAL
+      )!.movies;
       break;
     case CATALOG.POPULAR:
       movieCards = initialData.find(
@@ -60,10 +73,11 @@ const CatalogList: React.FC<CatalogListProps> = ({ initialData }) => {
       )!.movies;
       break;
   }
-  moviesFetched!.pages.flat();
+  console.log("movieCards", movieCards);
+  // moviesFetched!.pages.flat();
 
   return (
-    <div className="flex flex-col justify-start items-center w-full lg:max-h-[650px] lg:h-md:max-h-[460px] overflow-y-scroll">
+    <div className="flex flex-col justify-start items-center w-full lg:min-h-[640px]lg:max-h-[660px] lg:h-md:max-h-[460px] overflow-y-scroll">
       {movieCards &&
         (catalogSelected === CATALOG.PERSONAL
           ? movieCards.map((movie, index) =>
@@ -85,9 +99,9 @@ const CatalogList: React.FC<CatalogListProps> = ({ initialData }) => {
               );
             }))}
 
-      {isFetchingNextPage && hasNextPage && (
+      {/* {isFetchingNextPage && hasNextPage && (
         <AiOutlineReload size={25} className="animate-spin text-white" />
-      )}
+      )} */}
     </div>
   );
 };

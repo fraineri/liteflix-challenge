@@ -25,12 +25,14 @@ const Catalog: React.FC<CatalogProps> = async () => {
     redirect("/sign-in");
   }
 
+
   const topMoviesPromise = movieDbGetMoviePopularTop(CATALOG_TOP_AMOUNT);
-  const personalMoviesPromise = GetPersonalMovies(userSession.user.id);
+  const personalMoviesPromise = GetPersonalMovies(userSession.user.username!);
   const [topMovies, personalMovies] = await Promise.all([
     topMoviesPromise,
     personalMoviesPromise,
   ]);
+
 
   const initialCatalogData = [
     {
@@ -45,10 +47,10 @@ const Catalog: React.FC<CatalogProps> = async () => {
 
   return (
     <div>
-    <CatalogSelectionProvider>
+      <CatalogSelectionProvider>
         <CatalogSelector />
         <CatalogList initialData={initialCatalogData} />
-    </CatalogSelectionProvider>
+      </CatalogSelectionProvider>
     </div>
   );
 };

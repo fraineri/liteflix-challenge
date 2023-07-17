@@ -16,6 +16,10 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     return (movie as MovieExternal).popularity !== undefined;
   })(movie);
 
+  const backdropPath = isExternalMovie
+    ? `${THE_MOVIE_IMAGE_BASE_URL}/t/p/original${movie.backdropPath}`
+    : movie.backdropPath;
+
   return (
     <div className="relative w-80 lg:w-[220px] h-44 lg:h-[145px] group/movie mb-5">
       {/* HOVER */}
@@ -65,7 +69,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         </div>
         <div className="absolute w-full h-full top-0 left-0">
           <Image
-            src={`${THE_MOVIE_IMAGE_BASE_URL}/t/p/original${movie.backdropPath}`}
+            src={backdropPath}
             fill
             alt={`Cover image for the movie ${movie.title}`}
             priority={true}

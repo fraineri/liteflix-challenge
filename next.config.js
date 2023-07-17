@@ -22,6 +22,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "liteflix-media.s3.us-east-2.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   experimental: {

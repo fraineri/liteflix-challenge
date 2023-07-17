@@ -1,6 +1,10 @@
 "use server";
 
-import { THE_MOVIE_BASE_URL, THE_MOVIE_TOKEN } from "@/common/constants";
+import {
+  BACKEND_BASE_URL,
+  THE_MOVIE_BASE_URL,
+  THE_MOVIE_TOKEN,
+} from "@/common/constants";
 import { MoviePopularDTO } from "./dto/movie-popular.dto";
 import { MoviePlayingDTO } from "./dto/movie-playing.dto";
 import { Movie, MovieExternal } from "@/types/movie";
@@ -34,72 +38,24 @@ export const movieDbGetMoviePopular = async (): Promise<MoviePopularDTO> => {
 };
 
 export const GetPersonalMoviesRaw = async (
-  userId: string,
-  page: number = 1
+  userName: string,
+  page: number = 1,
+  limit: number = 999
 ): Promise<MoviePersonalDTO> => {
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
-  const res = await Promise.resolve({
-    page: 1,
-    results: [
-      {
-        id: 1,
-        image_url: "/6KErczPBROQty7QoIsaa6wJYXZi.jpg",
-        title: "Tom & Jerry",
-        upload_year: "2023",
-      },
-      {
-        id: 2,
-        image_url: "/6KErczPBROQty7QoIsaa6wJYXZi.jpg",
-        title: "Tom & Jerry",
-        upload_year: "2023",
-      },
-      {
-        id: 3,
-        image_url: "/6KErczPBROQty7QoIsaa6wJYXZi.jpg",
-        title: "Tom & Jerry",
-        upload_year: "2023",
-      },
-      {
-        id: 4,
-        image_url: "/6KErczPBROQty7QoIsaa6wJYXZi.jpg",
-        title: "Tom & Jerry",
-        upload_year: "2023",
-      },
-      {
-        id: 5,
-        image_url: "/6KErczPBROQty7QoIsaa6wJYXZi.jpg",
-        title: "Tom & Jerry",
-        upload_year: "2023",
-      },
-      {
-        id: 6,
-        image_url: "/6KErczPBROQty7QoIsaa6wJYXZi.jpg",
-        title: "Tom & Jerry",
-        upload_year: "2023",
-      },
-      {
-        id: 7,
-        image_url: "/6KErczPBROQty7QoIsaa6wJYXZi.jpg",
-        title: "Tom & Jerry",
-        upload_year: "2023",
-      },
-      {
-        id: 8,
-        image_url: "/6KErczPBROQty7QoIsaa6wJYXZi.jpg",
-        title: "Tom & Jerry",
-        upload_year: "2023",
-      },
-    ],
-    total_pages: 2,
-    total_results: 8,
-  });
-  const itemsPerPage = 4;
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  return {
-    ...res,
-    results: res.results.slice(startIndex, endIndex),
-  };
+  const pageParam = `page=${(page - 1)}`;
+  const limitParam = `limit=${3}`;
+  const username = `username=${userName}`;
+  const queryParams = `?${pageParam}&${limitParam}&${username}`;
+  
+  const resp = await fetch(
+    `${BACKEND_BASE_URL}/movie-upload/list${queryParams}`,
+    {
+      cache: "no-cache",
+    }
+  );
+
+
+  return await resp.json();
 };
 
 // BUSINESS METHODS
@@ -128,9 +84,9 @@ export const movieDbGetMoviePopularTop = async (
 };
 
 export const GetPersonalMovies = async (
-  userId: string,
+  userName: string,
   page: number = 1
 ): Promise<Movie[]> => {
-  const res = (await GetPersonalMoviesRaw(userId, page)).results;
-  return res.map((movie) => MapMoviePersonalResultDTOtoMovie(movie));
+  const res = (await GetPersonalMoviesRaw(userName, page)).movies;
+  return res?.map((movie) => MapMoviePersonalResultDTOtoMovie(movie)) ?? [];
 };

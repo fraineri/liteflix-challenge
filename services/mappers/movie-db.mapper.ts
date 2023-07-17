@@ -35,7 +35,9 @@ export const MapMoviePersonalResultDTOtoMovie = (
   return {
     id: moviePersonalResultDTO.id,
     title: moviePersonalResultDTO.title,
-    releaseDate: moviePersonalResultDTO.upload_year,
-    backdropPath: moviePersonalResultDTO.image_url,
+    releaseDate: new Date(moviePersonalResultDTO.uploadedAt)
+      .getFullYear()
+      .toString(),
+    backdropPath: moviePersonalResultDTO.url,
   };
 };
